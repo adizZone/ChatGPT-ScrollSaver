@@ -1,0 +1,36 @@
+{
+    "manifest_version": 3,
+    "name": "Scroll Back @ ChatGPT",
+    "version": "1.0",
+    "description": "Saves and restores chat.openai.com scrollbar position using Ctrl+Z.",
+    "permissions": [
+        "storage"
+    ],
+    "host_permissions": [
+        "https://chatgpt.com/*"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "https://chatgpt.com/*"
+            ],
+            "js": [
+                "content.js"
+            ]
+        }
+    ],
+    "commands": {
+        "go-to-saved-position": {
+            "suggested_key": {
+                "default": "Ctrl+X"
+            },
+            "description": "Go to the saved scroll position"
+        },
+        "go-to-current-position": {
+            "suggested_key": {
+                "default": "Ctrl+Y"
+            },
+            "description": "Go to the current scroll position"
+        }
+    }
+}
