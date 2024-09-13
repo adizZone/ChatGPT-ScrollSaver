@@ -76,9 +76,21 @@ window.addEventListener('beforeunload', () => {
   console.log("Scroll positions cleared from localStorage.");
 });
 
+
+// This is the target element to be focused to perform scroll
+function getInputElement() {
+  return document.getElementById('prompt-textarea');
+}
+
+// Check if the target element is focused
+function isInputElementFocused() {
+  const targetElement = getInputElement();
+  return targetElement === document.activeElement;
+}
+
 // Listen for key presses to undo (Ctrl+Z) or redo (Ctrl+Y) the scroll position
 document.addEventListener('keydown', (event) => {
-  if (event.ctrlKey && event.key === 'z') {
+  if (event.ctrlKey && event.key === 'z' && !isInputElementFocused()) {
     event.preventDefault();
     positionUndo(); // Undo: Go to the previous scroll position
   }
